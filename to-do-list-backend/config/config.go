@@ -2,11 +2,21 @@ package config
 
 import (
 	"os"
+	"path/filepath"
 	"regexp"
+	"runtime"
 	"strconv"
 
 	"github.com/joho/godotenv"
 	"github.com/sirupsen/logrus"
+)
+
+var (
+	// Get current file full path from runtime
+	_, b, _, _ = runtime.Caller(0)
+
+	// Root folder of this project
+	ProjectRootPath = filepath.Join(filepath.Dir(b), "../")
 )
 
 type AppConfig struct {
@@ -20,7 +30,7 @@ type AppConfig struct {
 
 func InitConfig() *AppConfig {
 	var res = new(AppConfig)
-	res = loadConfig(".env")
+	res = loadConfig(ProjectRootPath + ".env")
 	if res == nil {
 		logrus.Fatal("Config: Cannot start program, failed to load configuration")
 		return nil
