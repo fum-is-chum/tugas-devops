@@ -13,6 +13,7 @@ services:
         MYSQL_DATABASE: to_do_list
       volumes:
         - mysqldb-data:/var/lib/mysql  # Mount a volume for MySQL data
+
   web-backend:
     build:
       context: to-do-list-backend
@@ -23,6 +24,7 @@ services:
     image: todo-list-backend
     depends_on:
       - mysqldb
+      
   web-frontend:
     build:
       context: angular-to-do-list
