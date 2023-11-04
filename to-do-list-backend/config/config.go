@@ -30,7 +30,7 @@ type AppConfig struct {
 
 func InitConfig() *AppConfig {
 	var res = new(AppConfig)
-	res = loadConfig(ProjectRootPath + ".env")
+	res = loadConfig(".env")
 	if res == nil {
 		logrus.Fatal("Config: Cannot start program, failed to load configuration")
 		return nil
