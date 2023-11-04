@@ -1,0 +1,27 @@
+<div class="todo-list-container">
+  <div class="row">
+    <ng-container *ngIf="todos!.length > 0; else noTodos">
+      <ng-container *ngFor="let todo of todos; let idx = index">
+        <todo-item
+          [attr.data-cy]="'todo-item-' + idx"
+          [todo]="todo"
+          (onDelete)="confirmDeletion(idx)"
+          (onToggle)="updateIsActive(idx)"
+          (onEdit)="updateTodo(idx)"
+        ></todo-item>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #noTodos>
+  <div class="col-12">
+    <div
+      class="image-container d-flex justify-content-center cursor-pointer"
+      (click)="emitAddEvent()"
+      data-cy="todo-empty-state"
+    >
+      <img src="assets/svgs/todo-empty-state.svg" class="img-fluid" />
+    </div>
+  </div>
+</ng-template>

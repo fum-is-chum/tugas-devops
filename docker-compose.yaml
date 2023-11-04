@@ -1,0 +1,36 @@
+version: '3'
+name: 'tugas-devops'
+
+services:
+  mysqldb:
+      image: mysql:8.0.30
+      container_name: todo-list-mysqldb
+      ports:
+       - "3306:3306"
+      environment:
+        MYSQL_ROOT_USER: root
+        MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+        MYSQL_DATABASE: to_do_list
+      volumes:
+        - mysqldb-data:/var/lib/mysql  # Mount a volume for MySQL data
+  web-backend:
+    build:
+      context: to-do-list-backend
+      dockerfile: Dockerfile
+    container_name: todo-list-backend
+    ports:
+      - "8000:8000"
+    image: todo-list-backend
+    depends_on:
+      - mysqldb
+  web-frontend:
+    build:
+      context: angular-to-do-list
+      dockerfile: Dockerfile
+    container_name: todo-list-frontend
+    ports:
+      - "4200:80"
+    image: todo-list-frontend
+
+volumes:
+  mysqldb-data:  # Define a volume for MySQL data

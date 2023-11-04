@@ -1,0 +1,25 @@
+<div data-cy="modal-delete" class="modal-container">
+  <div class="modal-header justify-content-center align-items-center">
+    <img src="assets/svgs/modal-delete-icon.svg" alt="Delete Icon" data-cy="modal-delete-icon"/>
+  </div>
+  <div class="modal-body" ngbAutoFocus>
+    <p class="dialog-text" [innerHTML]="dialog" data-cy="modal-delete-title"></p>
+  </div>
+  <div class="modal-footer justify-content-center">
+    <primary-button
+      dataCy="modal-delete-cancel-button"
+      btnClass="secondary"
+      label="Batal"
+      [showIcon]="false"
+      (onClick)="dismiss()"
+    ></primary-button>
+    <primary-button
+      dataCy="modal-delete-confirm-button"
+      btnClass="danger"
+      [loading]="isLoading"
+      label="Hapus"
+      [showIcon]="false"
+      (onClick)="close(true)"
+    ></primary-button>
+  </div>
+</div>

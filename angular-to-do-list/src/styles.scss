@@ -1,0 +1,46 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~rfs/scss";
+* {
+  box-sizing: border-box;
+  font-family: "Poppins", Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #f4f4f4;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.modal-content {
+  border-radius: 12px;
+}
+
+ngb-toast.toast {
+  border-radius: 12px;
+  margin-bottom: 8px;
+
+  .toast-body {
+    @include font-size(14px);
+    font-weight: 500;
+    line-height: 21px;
+    letter-spacing: 0em;
+
+    border-radius: 12px;
+    @include font-size(15px);
+
+    i {
+      @include font-size(15px);
+      margin-right: 10px;
+      &.bi-exclamation-circle::before {
+        color: #16abf8;
+      }
+      &.bi-exclamation-triangle::before {
+        color: #ed4c5c;
+      }
+    }
+  }
+}

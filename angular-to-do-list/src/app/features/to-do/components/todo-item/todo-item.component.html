@@ -1,0 +1,40 @@
+<div class="todo-item-container">
+  <div class="card shadow-sm">
+    <div class="card-body d-flex justify-content-between">
+      <div class="d-flex align-items-center">
+        <label class="checkbox-container me-3">
+          <input
+            type="checkbox"
+            [checked]="todo.is_active"
+            data-cy="todo-item-checkbox"
+            (change)="updateIsActive()"
+          />
+          <span class="checkmark"></span>
+        </label>
+        <span
+          class="todo-item-priority-indicator {{ todo.priority }} me-3"
+          data-cy="todo-item-priority-indicator"
+        ></span>
+        <span
+          class="todo-title"
+          data-cy="todo-item-title"
+          [ngClass]="{ striked: !todo.is_active }"
+          >{{ todo.title }}</span
+        >
+        <span
+          class="todo-item-edit-button cursor-pointer"
+          data-cy="todo-item-edit-button"
+          (click)="editTodo()"
+        ></span>
+      </div>
+      <span
+        data-cy="todo-item-delete-button"
+        class="todo-item-checkbox cursor-pointer"
+        (click)="deleteTodo()"
+        ><img src="assets/svgs/trash.svg"
+      /></span>
+    </div>
+  </div>
+</div>
+
+<!-- {{ test() }} -->

@@ -1,0 +1,17 @@
+<div class="card shadow">
+  <div class="card-body cursor-pointer" (click)="activityDetail()">
+    <!-- {{ activity | json }} -->
+    <h4 class="card-title" data-cy="activity-item-title">{{ activity.title }}</h4>
+  </div>
+  <div class="card-footer">
+    <div class="d-flex justify-content-between align-items-center">
+      <div data-cy="activity-item-date">{{ activity.created_at | date : "d MMMM yyyy" }}</div>
+      <span
+        data-cy="activity-item-delete-button"
+        (click)="deleteActivity()"
+        class="delete-activity-button cursor-pointer"
+        ><img src="assets/svgs/trash.svg"
+      /></span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="activity-list-container">
+  <div class="row">
+    <ng-container *ngIf="activities!.length > 0; else noActivity">
+      <ng-container *ngFor="let activity of activities">
+        <div class="col-lg-3 col-md-6 col-12">
+          <activity-item-card
+            data-cy="activity-item"
+            [activity]="activity"
+            (onDeleted)="confirmDeletetion(activity)"
+          ></activity-item-card>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>
+<ng-template #noActivity>
+  <div class="col-12">
+    <div
+      class="image-container d-flex justify-content-center cursor-pointer"
+      (click)="emitAddEvent()"
+      data-cy="activity-empty-state"
+    >
+      <img src="assets/svgs/activity-empty-state.svg" class="img-fluid"/>
+    </div>
+  </div>
+</ng-template>

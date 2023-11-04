@@ -1,0 +1,83 @@
+<div data-cy="modal-add" class="modal-container">
+  <div class="modal-header">
+    <h4 data-cy="modal-add-title" class="modal-title modal-add-title" id="modal-basic-title">
+      {{ action }} List Item
+    </h4>
+    <button
+      data-cy="modal-add-close-button"
+      type="button"
+      class="btn-close modal-add-close-button"
+      aria-label="Close"
+      (click)="dismiss()"
+    ></button>
+  </div>
+  <div class="modal-body" ngbAutoFocus>
+    <form [formGroup]="form">
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label data-cy="modal-add-name-title" for="title">Nama list item</label>
+            <input
+              id="title"
+              name="title"
+              data-cy="modal-add-name-input"
+              formControlName="title"
+              class="form-control"
+              placeholder="Tambahkan nama list item"
+              [ngClass]="{ 'is-invalid': submitted && this.f['title'].errors }"
+            />
+
+            <div class="invalid-feedback" *ngIf="submitted && this.f['title'].errors">
+              <div *ngIf="this.f['title'].errors['required']">
+                Nama list item tidak boleh kosong
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group">
+            <label data-cy="modal-add-priority-title" for="priority">Priority</label>
+            <!-- <select class="form-select priority-select" formControlName="priority" data-cy="modal-add-priority-dropdown">
+              <ng-container *ngFor="let priority of priorityList">
+                <option class="priority-item" [value]="" [attr.data-cy]="'modal-add-priority-' + priority">
+                  <div class="priority-item">{{ priorityMap[priority] }}</div>
+                </option>
+              </ng-container>
+            </select> -->
+            <ng-select
+              data-cy="modal-add-priority-dropdown"
+              formControlName="priority"
+              [items]="priorityList"
+              [searchable]="false"
+              class="priority-select"
+              [clearable]="false"
+            >
+              <ng-template ng-option-tmp let-item="item">
+                <div class="priority-item {{ item }}" [attr.data-cy]="'modal-add-priority-' + item">
+                  {{ priorityMap[item] }}
+                </div>
+              </ng-template>
+              <ng-template ng-label-tmp let-item="item">
+                <div class="priority-item {{ item }}" data-cy="modal-add-priority-item">
+                  {{ priorityMap[item] }}
+                </div>
+              </ng-template> 
+            </ng-select>  
+          </div>
+        </div>
+      </div>
+    </form>
+    <!-- <div>{{ form.value | json }}</div> -->
+  </div>
+  <div class="modal-footer">
+    <primary-button
+      dataCy="modal-add-save-button"
+      btnClass="primary"
+      [loading]="isLoading"
+      [showIcon]="false"
+      [disabled]="form.invalid"
+      label="Simpan"
+      (onClick)="save()"
+    ></primary-button>
+  </div>
+</div>

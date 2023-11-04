@@ -1,0 +1,10 @@
+version: '3'
+name: 'tugas-devops-frontend'
+
+services:
+  web-frontend:
+    build: .
+    container_name: todo-list-frontend
+    ports:
+      - "4200:80"
+    image: todo-list-frontend

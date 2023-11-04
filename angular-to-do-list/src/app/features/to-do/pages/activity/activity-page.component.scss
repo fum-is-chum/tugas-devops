@@ -1,0 +1,23 @@
+@import '~rfs/scss';
+.activity-container {
+  padding-top: 43px;
+  .activity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    h1 {
+      @include font-size(36px);
+      font-weight: 700;
+
+      letter-spacing: 0em;
+    }
+  }
+
+  .activities-loading-indicator {
+    height: calc(100vh - 132.8px - 131.4px); // 100vh - (app-header) - (activity-header)
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

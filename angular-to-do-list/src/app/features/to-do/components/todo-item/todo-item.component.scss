@@ -1,0 +1,109 @@
+@import '~rfs/scss';
+.todo-item-container {
+  .card {
+    border-radius: 12px;
+    margin-bottom: 10px;
+    transition: all 0.3s;
+
+    .card-body {
+      padding: 28px 26px;
+
+      .checkbox-container {
+        display: block;
+        position: relative;
+        cursor: pointer;
+        height: 20px;
+        width: 20px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+        input[type="checkbox"] {
+          position: absolute;
+          opacity: 0;
+          cursor: pointer;
+          height: 0;
+          width: 0;
+
+          &:checked ~ .checkmark {
+            background-color: white;
+            border: 1px #c7c7c7 solid;
+          }
+        }
+
+        .checkmark {
+          background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3 6-6'/%3E%3C/svg%3E");
+          background-color: #16abf8;
+          border-color: #16abf8;
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 20px;
+          width: 20px;
+
+          &:after {
+            content: "";
+            position: absolute;
+            display: none;
+            left: 6px;
+            top: 3px;
+            width: 5px;
+            height: 8px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+          }
+
+          &:checked ~ .checkmark:after {
+            display: block;
+          }
+        }
+      }
+
+      .todo-item-edit-button {
+        &::before {
+          position: relative;
+          // bottom: 5px;
+          margin-left: 11px;
+          content: url("../../../../../assets/svgs/edit-icon.svg");
+        }
+      }
+    }
+  }
+
+  .todo-item-priority-indicator {
+    display: flex;
+    &::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    &.very-high::before {
+      background: #ed4c5c;
+    }
+    &.high::before {
+      background: #f8a541;
+    }
+    &.normal::before {
+      background: #00a790;
+    }
+    &.low::before {
+      background: #428bc1;
+    }
+    &.very-low::before {
+      background: #8942c1;
+    }
+  }
+
+  .todo-title {
+    @include font-size(18px);
+    font-weight: 500;
+    letter-spacing: 0em;
+
+    &.striked {
+      color: #888888;
+      text-decoration: line-through;
+    }
+  }
+}

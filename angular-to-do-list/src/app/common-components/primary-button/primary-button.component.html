@@ -1,0 +1,12 @@
+<button
+  [attr.data-cy]="dataCy"
+  class="btn {{ btnClass ? 'btn-' + btnClass : '' }}"
+  (click)="onClickButton($event)"
+  [disabled]="disabled"
+>
+  <i *ngIf="showIcon && !loading" class="bi {{ icon }}"></i>
+  <div class="spinner-border spinner-border-md text-light" role="status" *ngIf="loading">
+    <span class="sr-only"></span>
+  </div>
+  {{ label }}
+</button>

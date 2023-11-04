@@ -1,0 +1,24 @@
+<div class="container activity-container">
+  <div class="activity-header">
+    <h1 data-cy="activity-title">Activity</h1>
+    <primary-button
+      dataCy="activity-add-button"
+      label="Tambah"
+      icon="bi-plus-lg"
+      btnClass="primary"
+      [loading]="isAddingActivity"
+      (onClick)="addActivity()"
+    ></primary-button>
+  </div>
+
+  <ng-container *ngIf="activityIsLoading; else hasActivity">
+    <div class="activities-loading-indicator">
+      <div class="spinner-border spinner-border-md text-primary" role="status">
+        <span class="sr-only"></span>
+      </div>
+    </div>
+  </ng-container>
+</div>
+<ng-template #hasActivity>
+  <activity-list [activities]="activityList$ | async"></activity-list>
+</ng-template>

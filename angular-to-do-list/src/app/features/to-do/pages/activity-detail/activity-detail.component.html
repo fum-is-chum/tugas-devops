@@ -1,0 +1,92 @@
+<div class="container activity-detail-container">
+  <form [formGroup]="form">
+    <div class="activity-detail-header flex-wrap">
+      <div class="d-flex align-items-center justify-content-between flex-wrap">
+        <span
+          class="todo-back-button-container cursor-pointer"
+          data-cy="todo-back-button"
+          (click)="back()"
+        >
+          <i class="bi bi-chevron-left"></i>
+        </span>
+        <inline-edit
+          #inlineEdit
+          data-cy="todo-title"
+          [viewDisplay]="viewDisplayTemplate"
+          [value]="f['title'].value"
+          class="inline-edit"
+          id="activity"
+          (valueChange)="updateTitle($event)"
+        ></inline-edit>
+        <span
+          (click)="inlineEdit.setFocus()"
+          class="todo-title-edit-button cursor-pointer"
+          data-cy="todo-title-edit-button"
+        ></span>
+      </div>
+
+      <!--sort-->
+      <div class="d-flex align-items-center">
+        <div ngbDropdown class="d-inline-block me-4">
+          <button
+            data-cy="todo-sort-button"
+            type="button"
+            class="todo-sort-button"
+            id="dropdownBasic1"
+            ngbDropdownToggle
+          >
+            <div class="sort-icon"></div>
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1" data-cy="sort-selection">
+            <ng-container *ngFor="let sort of sortOptions">
+              <button ngbDropdownItem (click)="setSort(sort.value)" [attr.data-cy]="sort.value">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <img
+                      [src]="'assets/svgs/' + sort.value + '.svg'"
+                      class="me-2 img-fluid"
+                      [width]="20"
+                    />
+                    <span>{{ sort.label }}</span>
+                  </div>
+                  <ng-container *ngIf="sort.value === activeSort">
+                    <img src="assets/svgs/check.svg" />
+                  </ng-container>
+                </div>
+              </button>
+            </ng-container>
+          </div>
+        </div>
+
+        <primary-button
+          dataCy="todo-add-button"
+          label="Tambah"
+          icon="bi-plus-lg"
+          btnClass="primary"
+          (onClick)="addTodo()"
+        ></primary-button>
+      </div>
+    </div>
+  </form>
+
+  <ng-container *ngIf="todosIsLoading; else hasTodos">
+    <div class="todos-loading-indicator">
+      <div class="spinner-border spinner-border-md text-primary" role="status">
+        <span class="sr-only"></span>
+      </div>
+    </div>
+  </ng-container>
+  <!-- <div>{{ form.value | json }}</div> -->
+</div>
+
+<ng-template #viewDisplayTemplate>
+  <span>{{ f["title"].value }}</span>
+</ng-template>
+
+<ng-template #hasTodos>
+  <todo-list
+    [todos]="todoList$ | async"
+    (itemDeleted)="loadTodoList()"
+    (itemUpdated)="loadTodoList()"
+  ></todo-list>
+</ng-template>

@@ -1,0 +1,19 @@
+<div class="input-container" (click)="setFocus()">
+  <ng-container *ngIf="isFocused; else textDisplay">
+    <!-- form -->
+    <input
+      autoFocus
+      (focusout)="triggerFocusOut()"
+      (keydown.enter)="triggerFocusOut()"
+      [formControl]="formControl"
+      autocomplete="off"
+      autocapitalize="off"
+      id="inline-edit-{{ id }}"
+      name="inline-edit-{{ id }}"
+    />
+  </ng-container>
+</div>
+
+<ng-template #textDisplay>
+  <ng-container *ngTemplateOutlet="viewDisplay"></ng-container>
+</ng-template>

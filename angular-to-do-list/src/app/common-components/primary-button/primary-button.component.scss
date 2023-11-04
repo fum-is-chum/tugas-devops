@@ -1,0 +1,33 @@
+@import "~rfs/scss";
+.btn {
+  display: flex;
+  align-items: center;
+  @include padding-left(29px);
+  @include padding-right(29px);
+  @include padding-top(13.5px);
+  @include padding-bottom(13.5px);
+  @include rfs(45px, border-radius);
+  @include font-size(18px);
+  font-weight: 700;
+
+  &.btn-primary {
+    background-color: #16abf8;
+  }
+
+  &.btn-secondary {
+    color: #4A4A4A;
+    background-color: #f4f4f4;
+  }
+
+  i {
+    @include font-size(24px);
+    @include margin-right(11px);
+
+    &::before {
+      font-weight: 600 !important;
+    }
+  }
+  .spinner-border {
+    @include margin-right(11px);
+  }
+}

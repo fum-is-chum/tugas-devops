@@ -1,0 +1,67 @@
+@import "~rfs/scss";
+.activity-detail-container {
+  padding-top: 43px;
+  .activity-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+
+    .todo-back-button-container {
+      i::before {
+        font-weight: 900 !important;
+        @include font-size(32px);
+        margin-right: 11px;
+      }
+    }
+
+    .todo-title-edit-button {
+      &::before {
+        position: relative;
+        // bottom: 5px;
+        margin-left: 11px;
+        content: url("../../../../../assets/svgs/edit-icon.svg");
+      }
+    }
+
+    .todo-sort-button {
+      background-repeat: no-repeat;
+      border-radius: 50%;
+      border: 1px solid #e5e5e5;
+      background-color: transparent;
+      height: 54px;
+      width: 54px;
+      &::after {
+        content: none;
+      }
+      .sort-icon {
+        background-image: url("../../../../../assets/svgs/sort.svg");
+        width: 24px;
+        height: 24px;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        display: inline-block;
+        vertical-align: middle;
+        cursor: pointer;
+      }
+    }
+
+    .dropdown-menu {
+      min-width: 13rem;
+    }
+  }
+
+  .todos-loading-indicator {
+    height: calc(100vh - 132.8px - 131.4px); // 100vh - (app-header) - (activity-header)
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.inline-edit {
+  @include font-size(36px);
+  font-weight: 700 !important;
+
+  letter-spacing: 0em;
+}
