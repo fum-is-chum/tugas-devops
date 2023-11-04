@@ -1,10 +1,7 @@
 package usecase
 
 import (
-	"errors"
-	"reflect"
 	"to-do-list/dto"
-	fieldHelper "to-do-list/helpers/field"
 	"to-do-list/model"
 	repository "to-do-list/repository/to-do-item"
 
@@ -67,11 +64,11 @@ func (t *todoItemUseCase) CreateTodo(data *dto.ToDoRequest) error {
 }
 
 func (t *todoItemUseCase) UpdateTodo(id uint, data *dto.ToDoRequest) error {
-	val := reflect.ValueOf(*data)
+	// val := reflect.ValueOf(*data)
 
-	if fieldHelper.IsFieldSet(&val, "ActivityGroupID") {
-		return errors.New("Cannot update ActivityGroupID from this endpoint")
-	}
+	// if fieldHelper.IsFieldSet(&val, "ActivityGroupID") {
+	// 	return errors.New("Cannot update ActivityGroupID from this endpoint")
+	// }
 
 	if err := t.repo.Update(id, data); err != nil {
 		return err

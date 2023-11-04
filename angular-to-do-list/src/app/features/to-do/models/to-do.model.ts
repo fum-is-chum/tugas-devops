@@ -11,6 +11,7 @@ export class Todo {
   created_at?: string;
   updated_at?: string;
   id?: number;
+  activity_group_id: number;
   title: string;
 
   constructor(data: any = {}) {
@@ -21,6 +22,7 @@ export class Todo {
     }
     this.is_active = data.is_active ?? true;
     this.priority = data.priority || 'very-high';
+    this.activity_group_id = data.activity_group_id || null;
     this.title = data.title || null;
   }
 
