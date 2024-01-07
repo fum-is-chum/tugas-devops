@@ -20,4 +20,4 @@ RUN apk --no-cache add curl && apk --no-cache add bash\
 
 EXPOSE 8000
 # Set server to wait for MySQL service
-CMD ["./wait-for-it.sh", "--timeout=60", "mysqldb:3306", "--", "./server"]
+CMD ["./wait-for-it.sh", "--timeout=60", "mysqldb-service:3306", "--", "./server"]
