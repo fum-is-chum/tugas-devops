@@ -34,5 +34,10 @@ services:
       - "4200:80"
     image: todo-list-frontend
 
+  registry:
+    image: registry:2
+    container_name: local-registry
+    ports:
+      - "5000:5000"
 volumes:
   mysqldb-data:  # Define a volume for MySQL data

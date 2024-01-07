@@ -17,15 +17,25 @@ spec:
           image: localhost:5000/todo-list-backend:latest
           ports:
             - containerPort: 80
-          # Add additional configuration here if required
-          # Example: environment variables, volumes, etc.
+          env:
+            - name: SERVERPORT
+              value: "80"
+            - name: DBPORT
+              value: "3306"
+            - name: DBHOST
+              value: "mysqldb-service"  # Use the name of your MySQL Service here
+            - name: DBUSER
+              value: "root"
+            - name: DBPASS
+              value: ""  # If you have a password, put it here
+            - name: DBNAME
+              value: "to_do_list"
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: backend-service
 spec:
-  # type: NodePort
   ports:
     - port: 80
       targetPort: 80
