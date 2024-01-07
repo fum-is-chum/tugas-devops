@@ -15,7 +15,7 @@ export class ActivityService {
     return new Promise((resolve, reject) => {
       this._http.get<ApiResponse>(`/activity-groups`, { responseType: 'json' })
         .subscribe({
-          next: (resp) => resolve(resp.data),
+          next: (resp) => resolve(resp.data ?? []),
           error: (err) => reject(err),
           complete: () => { }
         });

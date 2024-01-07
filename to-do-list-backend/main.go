@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"to-do-list/config"
 	"to-do-list/routes"
 
@@ -22,5 +23,5 @@ func main() {
 	// init routing
 	routes.InitRouter(e, dbMysql)
 	// start the server, and log if it fails
-	e.Logger.Fatal(e.Start(":8000"))
+	e.Logger.Fatal(e.Start(fmt.Sprintf(":%d", cfg.SERVERPORT)))
 }

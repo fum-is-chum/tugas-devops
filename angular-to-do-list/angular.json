@@ -77,6 +77,10 @@
             },
             "development": {
               "browserTarget": "to-do-list:build:development"
+            },
+            "options": {
+              "browserTarget": "your-application-name:build",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
