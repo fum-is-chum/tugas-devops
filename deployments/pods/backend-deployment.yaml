@@ -16,7 +16,7 @@ spec:
         - name: backend
           image: localhost:5000/todo-list-backend:latest
           ports:
-            - containerPort: 8000
+            - containerPort: 80
           # Add additional configuration here if required
           # Example: environment variables, volumes, etc.
 ---
@@ -27,7 +27,7 @@ metadata:
 spec:
   # type: NodePort
   ports:
-    - port: 8000
-      targetPort: 8000
+    - port: 80
+      targetPort: 80
   selector:
     app: backend

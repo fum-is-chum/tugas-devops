@@ -26,7 +26,7 @@ export class TodoService {
     return new Promise((resolve, reject) => {
       this._http.get<ApiResponse>(`/todo-items?activity_group_id=${encodeURI(activity_group_id.toString())}`)
         .subscribe({
-          next: (resp) => resolve(resp.data),
+          next: (resp) => resolve(resp.data ?? []),
           error: (err) => reject(err),
           complete: () => { }
         });
