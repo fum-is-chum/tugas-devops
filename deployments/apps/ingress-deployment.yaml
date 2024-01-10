@@ -547,6 +547,7 @@ rules:
       - ''
     resources:
       - secrets
+      - services
     verbs:
       - get
       - create
