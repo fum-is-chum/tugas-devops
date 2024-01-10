@@ -17,6 +17,14 @@ spec:
           image: localhost:5000/todo-list-backend:latest
           ports:
             - containerPort: 80
+          resources:
+            requests:
+              cpu: 50m
+              memory: 128Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi
+
           env:
             - name: SERVERPORT
               value: "80"
@@ -30,6 +38,7 @@ spec:
               value: ""  # If you have a password, put it here
             - name: DBNAME
               value: "to_do_list"
+              
 ---
 apiVersion: v1
 kind: Service

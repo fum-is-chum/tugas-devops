@@ -39,5 +39,9 @@ services:
     container_name: local-registry
     ports:
       - "5000:5000"
+    volumes:
+      - registry-data:/var/lib/registry  # Mount a volume for registry data
+
 volumes:
   mysqldb-data:  # Define a volume for MySQL data
+  registry-data:  # Define a volume for registry data

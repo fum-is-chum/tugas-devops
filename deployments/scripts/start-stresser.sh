@@ -1,0 +1,2 @@
+# run 2 client pod to stress test the backend server
+kubectl run -i --tty load-generator-1 --rm --image=busybox:1.28 --restart=Never --namespace=ingress-nginx -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://backend-service/activity-groups; done"
