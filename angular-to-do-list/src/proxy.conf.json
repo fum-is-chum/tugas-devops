@@ -1,0 +1,7 @@
+{
+  "/api": {
+    "target": "http://backend-service",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

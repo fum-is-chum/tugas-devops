@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: localhost:5000/todo-list-backend:latest
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: 50m
+              memory: 128Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi
+
+          env:
+            - name: SERVERPORT
+              value: "80"
+            - name: DBPORT
+              value: "3306"
+            - name: DBHOST
+              value: "mysqldb-service"  # Use the name of your MySQL Service here
+            - name: DBUSER
+              value: "root"
+            - name: DBPASS
+              value: ""  # If you have a password, put it here
+            - name: DBNAME
+              value: "to_do_list"
+              
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    app: backend

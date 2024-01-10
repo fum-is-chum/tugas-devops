@@ -1,0 +1,1 @@
+kubectl delete services --all -n ingress-nginx && kubectl delete service metrics-server -n kube-system

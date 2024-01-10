@@ -18,6 +18,6 @@ RUN apk --no-cache add curl && apk --no-cache add bash\
     && curl -o wait-for-it.sh https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh \
     && chmod +x wait-for-it.sh
 
-EXPOSE 8000
+EXPOSE 80
 # Set server to wait for MySQL service
-CMD ["./wait-for-it.sh", "--timeout=60", "mysqldb:3306", "--", "./server"]
+CMD ["./wait-for-it.sh", "--timeout=60", "mysqldb-service:3306", "--", "./server"]

@@ -7,13 +7,14 @@ import (
 	todoRepo "to-do-list/repository/to-do-item"
 	activityUseCase "to-do-list/usecase/activity-group"
 	todoUseCase "to-do-list/usecase/to-do-item"
-
+	
+	"os"
 	"github.com/labstack/echo/v4"
 	"gorm.io/gorm"
 )
 
 func InitRouter(e *echo.Echo, db *gorm.DB) {
-	
+
 	// logger middleware
 	m.LoggerMiddleware(e)
 	m.Cors(e)
@@ -22,7 +23,7 @@ func InitRouter(e *echo.Echo, db *gorm.DB) {
 	activityRepo := activityRepo.NewActivityGroupRepository(db)
 	activityService := activityUseCase.NewActivityGroupUseCase(activityRepo)
 	activityController := controller.NewActivityGroupController(activityService)
-	
+
 	activityGroup := e.Group("/activity-groups")
 	activityGroup.GET("", activityController.GetActivityGroups)
 	activityGroup.GET("/:id", activityController.GetActivity)
@@ -41,4 +42,9 @@ func InitRouter(e *echo.Echo, db *gorm.DB) {
 	todoGroup.POST("", todoController.CreateTodo)
 	todoGroup.PATCH("/:id", todoController.UpdateTodo)
 	todoGroup.DELETE("/:id", todoController.DeleteTodo)
+
+	e.GET("/crash", func(c echo.Context) error {
+		os.Exit(1)
+    return nil
+	})
 }

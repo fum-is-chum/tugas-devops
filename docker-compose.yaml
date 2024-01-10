@@ -20,7 +20,7 @@ services:
       dockerfile: Dockerfile
     container_name: todo-list-backend
     ports:
-      - "8000:8000"
+      - "80:80"
     image: todo-list-backend
     depends_on:
       - mysqldb
@@ -34,5 +34,14 @@ services:
       - "4200:80"
     image: todo-list-frontend
 
+  registry:
+    image: registry:2
+    container_name: local-registry
+    ports:
+      - "5000:5000"
+    volumes:
+      - registry-data:/var/lib/registry  # Mount a volume for registry data
+
 volumes:
   mysqldb-data:  # Define a volume for MySQL data
+  registry-data:  # Define a volume for registry data
