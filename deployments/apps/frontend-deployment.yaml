@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: localhost:5000/todo-list-frontend:latest
+          image: localhost:50000/todo-list-frontend:latest
           ports:
             - containerPort: 80
           resources:

@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: localhost:5000/todo-list-backend:latest
+          image: localhost:50000/todo-list-backend:latest
           ports:
             - containerPort: 80
           resources:
